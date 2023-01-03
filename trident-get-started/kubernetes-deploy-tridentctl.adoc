@@ -1,0 +1,133 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-deploy-tridentctl.html 
+keywords: deploy, astra trident, methods, tridentctl 
+summary: 'Puede poner en marcha Astra Trident con `tridentctl`.' 
+---
+= Despliegue con trimentctl
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Puede poner en marcha Astra Trident con `tridentctl`.
+
+
+TIP: Si usted no se ha familiarizado ya con el link:../trident-concepts/intro.html["conceptos básicos"^], ahora es un gran momento para hacerlo.
+
+
+TIP: Para personalizar la puesta en marcha, consulte link:kubernetes-customize-deploy-tridentctl.html["aquí"^].
+
+.Lo que necesitará
+Para poner en marcha Astra Trident, se deben cumplir los siguientes requisitos previos:
+
+* Tiene privilegios completos en un clúster de Kubernetes compatible.
+* Tiene acceso a un sistema de almacenamiento de NetApp compatible.
+* Puede montar volúmenes de todos los nodos de trabajo de Kubernetes.
+* Tiene un host Linux con `kubectl` (o. `oc`, Si está utilizando OpenShift) instalado y configurado para administrar el clúster de Kubernetes que desea utilizar.
+* Ha configurado el `KUBECONFIG` Variable de entorno para señalar la configuración del clúster de Kubernetes.
+* Habilitó el link:requirements.html["Puertas de funciones requeridas por Astra Trident"^].
+* Si utiliza Kubernetes con Docker Enterprise, https://docs.docker.com/ee/ucp/user-access/cli/["Siga sus pasos para habilitar el acceso a la CLI"^].
+
+
+¿Tiene todo eso? Estupendo. Empecemos:
+
+
+TIP: Para obtener información acerca de cómo personalizar la implementación, consulte link:kubernetes-customize-deploy-tridentctl.html["aquí"^].
+
+
+
+== Paso 1: Califique su clúster de Kubernetes
+
+Lo primero que debe hacer es iniciar sesión en el host Linux y comprobar que está gestionando un _working_, link:requirements.html["Clúster de Kubernetes compatible"^] que tenga los privilegios necesarios para.
+
+
+NOTE: Con OpenShift, usted usa `oc` en lugar de `kubectl` en todos los ejemplos que siguen, y debe iniciar sesión como *system:admin* primero ejecutando `oc login -u system:admin` o. `oc login -u kube-admin`.
+
+Para comprobar la versión de Kubernetes, ejecute el siguiente comando:
+
+[listing]
+----
+kubectl version
+----
+Para ver si tiene privilegios de administrador de clúster Kubernetes, ejecute el siguiente comando:
+
+[listing]
+----
+kubectl auth can-i '*' '*' --all-namespaces
+----
+Para verificar si puede iniciar un pod que utiliza una imagen desde Docker Hub y llegar al sistema de almacenamiento a través de la red de pod, ejecute el siguiente comando:
+
+[listing]
+----
+kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
+  ping <management IP>
+----
+Identifique la versión del servidor Kubernetes. Lo utilizará cuando instale Astra Trident.
+
+
+
+== Paso 2: Descargue y extraiga el instalador
+
+
+NOTE: El instalador de Trident crea un pod Trident, configura los objetos CRD que se utilizan para mantener su estado e inicializa los sidecs CSI que realizan acciones, como el aprovisionamiento y la asociación de volúmenes a los hosts del clúster.
+
+Puede descargar y extraer la versión más reciente del paquete de instalación de Trident desde link:https://github.com/NetApp/trident/releases/latest["La sección _Assets_ de GitHub"^].
+
+Por ejemplo, si la última versión es 21.07.1:
+
+[listing]
+----
+wget https://github.com/NetApp/trident/releases/download/v21.07.1/trident-installer-21.07.1.tar.gz
+tar -xf trident-installer-21.07.1.tar.gz
+cd trident-installer
+----
+
+
+== Paso 3: Instalar Astra Trident
+
+Instale Astra Trident en el espacio de nombres deseado ejecutando `tridentctl install` comando.
+
+[listing]
+----
+./tridentctl install -n trident
+....
+INFO Starting Trident installation.                namespace=trident
+INFO Created service account.
+INFO Created cluster role.
+INFO Created cluster role binding.
+INFO Added finalizers to custom resource definitions.
+INFO Created Trident service.
+INFO Created Trident secret.
+INFO Created Trident deployment.
+INFO Created Trident daemonset.
+INFO Waiting for Trident pod to start.
+INFO Trident pod started.                          namespace=trident pod=trident-csi-679648bd45-cv2mx
+INFO Waiting for Trident REST interface.
+INFO Trident REST interface is up.                 version=21.07.1
+INFO Trident installation succeeded.
+....
+----
+Se verá así cuando el instalador haya finalizado. Según el número de nodos del clúster de Kubernetes, puede observar más pods:
+
+[listing]
+----
+kubectl get pod -n trident
+NAME                           READY   STATUS    RESTARTS   AGE
+trident-csi-679648bd45-cv2mx   4/4     Running   0          5m29s
+trident-csi-vgc8n              2/2     Running   0          5m29s
+
+./tridentctl -n trident version
++----------------+----------------+
+| SERVER VERSION | CLIENT VERSION |
++----------------+----------------+
+| 21.07.1        | 21.07.1        |
++----------------+----------------+
+----
+Si ve un resultado similar al ejemplo anterior, ha completado este paso, pero Astra Trident aún no está completamente configurado. Adelante y continúe con el paso siguiente. Consulte link:kubernetes-postdeployment.html["tareas posteriores a la implementación"^].
+
+Sin embargo, si el instalador no se completa correctamente o no ve una *en ejecución* `trident-csi-<generated id>`, la plataforma no estaba instalada.
+
+
+TIP: Para obtener información sobre la solución de problemas durante la implementación, consulte link:../troubleshooting.html["resolución de problemas"^] sección.

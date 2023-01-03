@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: trident-concepts/ontap-drivers.html 
+keywords: trident backend, AFF, FAS, ONTAP Select, Cloud, Amazon FSx for NetApp ONTAP, drivers, ONTAP drivers 
+summary: Descubra cómo crear y usar un back-end de Element con la instalación de Trident. 
+---
+= Controladores ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+Astra Trident proporciona cinco controladores de almacenamiento exclusivos de ONTAP para comunicarse con clústeres de ONTAP. Obtenga más información sobre cómo se ocupa cada controlador de la creación de volúmenes y el control de acceso y sus capacidades.
+
+[cols="5"]
+|===
+| Controlador | Protocolo | Modo VolumeMode | Modos de acceso compatibles | Sistemas de archivos compatibles 
+
+
+| `ontap-nas`  a| 
+NFS
+ a| 
+Sistema de archivos
+ a| 
+RWO, RWX, ROX
+ a| 
+"", nfs
+
+
+
+| `ontap-nas-economy`  a| 
+NFS
+ a| 
+Sistema de archivos
+ a| 
+RWO, RWX, ROX
+ a| 
+"", nfs
+
+
+
+| `ontap-nas-flexgroup`  a| 
+NFS
+ a| 
+Sistema de archivos
+ a| 
+RWO, RWX, ROX
+ a| 
+"", nfs
+
+
+
+| `ontap-san`  a| 
+ISCSI
+ a| 
+Bloque
+ a| 
+RWO, ROX, RWX
+ a| 
+No hay sistema de archivos. Dispositivo de bloque RAW
+
+
+
+| `ontap-san`  a| 
+ISCSI
+ a| 
+Sistema de archivos
+ a| 
+RWO, ROX
+ a| 
+`xfs`, `ext3`, `ext4`
+
+
+
+| `ontap-san-economy`  a| 
+ISCSI
+ a| 
+Bloque
+ a| 
+RWO, ROX, RWX
+ a| 
+No hay sistema de archivos. Dispositivo de bloque RAW
+
+
+
+| `ontap-san-economy`  a| 
+ISCSI
+ a| 
+Sistema de archivos
+ a| 
+RWO, ROX
+ a| 
+`xfs`, `ext3`, `ext4`
+
+|===
+
+NOTE: Los back-ends de ONTAP se pueden autenticar con las credenciales de inicio de sesión para un rol de seguridad (nombre de usuario/contraseña) o con la clave privada y el certificado instalado en el clúster de ONTAP. Es posible actualizar los back-ends existentes para pasar de un modo de autenticación a otro con `tridentctl update backend`.
