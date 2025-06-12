@@ -154,10 +154,6 @@
   <block id="fdd380631ba8063e7b8f842282a01e40" category="list-text"><block ref="fdd380631ba8063e7b8f842282a01e40" category="inline-link-rx"></block></block>
   <block id="4af8991c21dff2f779496b8350d1124b" category="inline-link">Astra Trident 22.01</block>
   <block id="7669b0b69333e81c7c208aea3d1a3c6f" category="list-text"><block ref="7669b0b69333e81c7c208aea3d1a3c6f" category="inline-link-rx"></block></block>
-  <block id="cce172403b73af5c2a4e93081affcc7f" category="inline-link">Astra Trident 21.10</block>
-  <block id="606b9e83fb467a43b3065d4fd5037094" category="list-text"><block ref="606b9e83fb467a43b3065d4fd5037094" category="inline-link-rx"></block></block>
-  <block id="a93e9e44b7a375a4236260f5ff2b251e" category="inline-link">Astra Trident 21.07</block>
-  <block id="3830d427e146a8a64454dc373d9b1502" category="list-text"><block ref="3830d427e146a8a64454dc373d9b1502" category="inline-link-rx"></block></block>
   <block id="02030c8e07c049062fbbba9a32b01067" category="summary">Los pools de almacenamiento virtual proporcionan una capa de abstracción entre los back-ends de almacenamiento de Astra Trident y las clases de almacenamiento de Kubernetes. Permiten a un administrador definir aspectos como la ubicación, el rendimiento y la protección de cada back-end de una forma común e independiente del back-end sin hacer que StorageClass especifique qué tipo de backend, pool back-end o backend físico debe utilizar para cumplir los criterios deseados.</block>
   <block id="9f802733184b3e0fb080eddcf9ffeaef" category="doc">Pools de almacenamiento virtual</block>
   <block id="9f4406586d4a2343f2a5289e16131b3e" category="paragraph">Los pools de almacenamiento virtual proporcionan una capa de abstracción entre los back-ends de almacenamiento de Astra Trident y Kubernetes.<block ref="f652904c3bfb48fb25a0a75f485f0ff6" prefix=" " category="inline-code"></block>. Permiten a un administrador definir aspectos, como la ubicación, el rendimiento y la protección de cada back-end de una manera común y independiente del back-end sin hacer un<block ref="e1e2a331ab1d8dccfea06fc8e04e2f5d" prefix=" " category="inline-code"></block> especifique qué tipo de backend físico, pool back-end o backend desea utilizar para cumplir los criterios deseados.</block>
@@ -2782,7 +2778,6 @@
   <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">Puede encontrar una lista actual de las patentes propiedad de NetApp en:</block>
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">Política de privacidad</block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">Código abierto</block>
-  <block id="0172b29a9f5d94dc62ee592a98183f3b" category="paragraph">Puede revisar las licencias y los derechos de autor de terceros que se utilizan en el software de NetApp para Astra Trident en el archivo de avisos de cada versión en<block ref="4a3c8c5a408c6db1c44c04391a8a0a2f" category="inline-link-rx"></block>.</block>
   <block id="d59b86d1714966230da7a00672e40912" category="summary">Utilice las recomendaciones que se enumeran aquí para asegurarse de que su instalación de Astra Trident es segura.</block>
   <block id="2fae32629d4ef4fc6341f1751b405e45" category="doc">Seguridad</block>
   <block id="44a736677691eaca5e5d3d6b5c770b22" category="section-title">Ejecute Astra Trident en su propio espacio de nombres</block>
@@ -3274,4 +3269,6 @@
   <block id="f8b52d963f246a75dc6c8b78c954a4fd" category="list-text"><block ref="f8b52d963f246a75dc6c8b78c954a4fd" category="inline-link-rx"></block></block>
   <block id="b6780b7b2561935ff862fe7126cde751" category="list-text"><block ref="b6780b7b2561935ff862fe7126cde751" category="inline-link-rx"></block></block>
   <block id="b9a641d903e611a87a5e68ac7fdb0b84" category="list-text">Trident AutoSupport no recopila ni transmite información personal identificable (PII) ni Información personal. Incluye una<block ref="173a360b412944768c2ab13e6c8fd1c7" category="inline-link-rx"></block> que no es aplicable a la propia imagen del contenedor de Trident. Puede obtener más información sobre el compromiso de NetApp con la seguridad y la confianza de los datos<block ref="d3cc55401bc8303e01c6b0c43ba0733f" category="inline-link-rx"></block>.</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">Los archivos de notificación proporcionan información sobre los derechos de autor y las licencias de terceros que se utilizan en software de NetApp.</block>
+  <block id="b2c5fe74ce5fe4b418e2c888873cdad2" category="paragraph"><block ref="6cd62921a12aa45126e024256eb76da4" category="inline-link-rx"></block>.</block>
 </blocks>
